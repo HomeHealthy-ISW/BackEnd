@@ -24,6 +24,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 public class SubscriptionServiceImpIntegrationTest {
@@ -50,15 +51,15 @@ public class SubscriptionServiceImpIntegrationTest {
 
     @Test
     @DisplayName("When createSubscriptionPlan Without An Existing Plan")
-    public void when(){
+    public void whaen(){
         //Arrange
         String template= "Resource %s not found for %s with value %s";
         Customer customer = new Customer();
         customer.setId(1L);
         customer.setName("Source");
-        Mockito.when(customerRepository.findById(1L))
+        when(customerRepository.findById(1L))
                 .thenReturn(Optional.of(customer));
-        Mockito.when(planRepository.findById(1L))
+        when(planRepository.findById(1L))
                 .thenReturn(Optional.empty());
         String expectedMessage = String.format(template, "Plan","Id",1L);
         //Act
@@ -80,9 +81,9 @@ public class SubscriptionServiceImpIntegrationTest {
         String template= "Resource %s not found for %s with value %s";
         Plan plan = new Plan();
         plan.setId(1L);
-        Mockito.when(customerRepository.findById(1L))
+        when(customerRepository.findById(1L))
                 .thenReturn(Optional.empty());
-        Mockito.when(planRepository.findById(1L))
+        when(planRepository.findById(1L))
                 .thenReturn(Optional.of(plan));
         String expectedMessage = String.format(template, "Customer","Id",1L);
         //Act
@@ -102,9 +103,9 @@ public class SubscriptionServiceImpIntegrationTest {
     public void whenaa(){
         //Arrange
         String template= "Resource %s not found for %s with value %s";
-        Mockito.when(customerRepository.findById(1L))
+        when(customerRepository.findById(1L))
                 .thenReturn(Optional.empty());
-        Mockito.when(planRepository.findById(1L))
+        when(planRepository.findById(1L))
                 .thenReturn(Optional.empty());
         String expectedMessage = String.format(template, "Subscription","Id",1L);
         //Act
@@ -115,5 +116,21 @@ public class SubscriptionServiceImpIntegrationTest {
         assertThat(exception)
                 .isInstanceOf(ResourceNotFoundException.class)
                 .hasMessage(expectedMessage);
+    }
+
+    @Test
+    @DisplayName("Get Subscription by Id with valid Id returns true")
+    public void getSubscriptionByIdWithValidIdThenReturnTrue(){
+        Long id = 1L;
+        Subscription subscription = new Subscription()
+                .setId(id);
+        when(subscriptionRepository.findById(id))
+                .thenReturn(Optional.of(subscription));
+
+        //Act
+        Subscription foundSubscription = subscriptionService.getOrderSubscriptionById(id);
+
+        //Assert
+        assertThat(foundSubscription.getId()).isEqualTo(subscription.getId());
     }
 }
