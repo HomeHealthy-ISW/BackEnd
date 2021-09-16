@@ -178,8 +178,8 @@ public class ReviewServiceImplIntegration {
     }
 
     @Test
-    @DisplayName("Get Score by Id with valid Id then return is not valid")
-    public void whenGetScoreByIdWithInValidScoreIdThenReturnsResourceNotFoundException(){
+    @DisplayName("Get Review by Ids with valid Ids then return is not valid")
+    public void whenGetScoreByIdWithInValidReviewsIdThenReturnsResourceNotFoundException(){
         String template ="Resource %s not found for %s with value %s";
         Long customerId = 1L;
         Long collaboratorId = 1L;
