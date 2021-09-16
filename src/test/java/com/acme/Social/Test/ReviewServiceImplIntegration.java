@@ -29,6 +29,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 public class ReviewServiceImplIntegration {
@@ -151,4 +152,49 @@ public class ReviewServiceImplIntegration {
                 .isInstanceOf(ResourceNotFoundException.class)
                 .hasMessage(expectedMessage);
     }
+
+    @Test
+    @DisplayName("Get Review by customerId and collaboratorId with valid Ids then return true")
+    public void whenGetReviewByCustomerIdAndCollaboratorIdWithValidIdSThenReturnsReviews(){
+        Long customerId = 1L;
+        Long collaboratorId = 2L;
+        Collaborator collaborator = new Collaborator()
+                .setId(collaboratorId);
+        Customer customer = new Customer()
+                .setId(customerId);
+       Review review = new Review()
+               .setCollaborator(collaborator)
+               .setCustomer(customer);
+
+        when(reviewRepository.findReviewByCustomer_IdAndCollaborator_Id(customerId, collaboratorId))
+                .thenReturn(Optional.of(review));
+
+        //Act
+        Review foundReview = reviewService.getReviewByCustomerAndCollaborator(customerId,collaboratorId);
+
+        //Assert
+        assertThat(foundReview.getCollaborator().getId()).isEqualTo(collaborator.getId());
+        assertThat(foundReview.getCustomer().getId()).isEqualTo(customer.getId());
+    }
+
+    @Test
+    @DisplayName("Get Score by Id with valid Id then return is not valid")
+    public void whenGetScoreByIdWithInValidScoreIdThenReturnsResourceNotFoundException(){
+        String template ="Resource %s not found for %s with value %s";
+        Long customerId = 1L;
+        Long collaboratorId = 1L;
+        when(reviewRepository.findReviewByCustomer_IdAndCollaborator_Id(customerId, collaboratorId))
+                .thenReturn(Optional.empty());
+        String expectedMessage = String.format(template, "Customer and Collaborator","Id", customerId + collaboratorId);
+        //Act
+        Throwable exception = catchThrowable(()->{
+            Review foundReview = reviewService.getReviewByCustomerAndCollaborator(customerId, collaboratorId);
+        });
+
+        //Assert
+        assertThat(exception)
+                .isInstanceOf(ResourceNotFoundException.class)
+                .hasMessage(expectedMessage);
+    }
+
 }

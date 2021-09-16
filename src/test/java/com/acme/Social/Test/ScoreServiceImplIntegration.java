@@ -116,7 +116,7 @@ public class ScoreServiceImplIntegration {
         String expectedMessage = String.format(template, "Score", "Id", id);
         //Act
         Throwable exception = catchThrowable(()->{
-            Score foundSubscription = scoreService.getScoreById(id);
+            Score foundScore = scoreService.getScoreById(id);
         });
 
         //Assert
