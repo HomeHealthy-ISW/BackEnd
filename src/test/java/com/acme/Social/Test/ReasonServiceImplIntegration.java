@@ -85,7 +85,7 @@ public class ReasonServiceImplIntegration {
 
 
     @Test
-    @DisplayName("")
+    @DisplayName("When findById With valid Id Returns True")
     public void whenGetReasonByIdIdWithValidIdThenReturnsReviews(){
         //Arrange
         Long id = 1L;
