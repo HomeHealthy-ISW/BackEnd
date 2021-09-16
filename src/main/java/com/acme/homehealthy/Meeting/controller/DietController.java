@@ -8,6 +8,7 @@ import com.acme.homehealthy.Meeting.resource.DietResource;
 import com.acme.homehealthy.Meeting.resource.SaveDietResource;
 
 import com.acme.homehealthy.Meeting.resource.SessionResource;
+import com.acme.homehealthy.MemberShip.resource.PlanResource;
 import com.acme.homehealthy.Social.domain.model.Review;
 import com.acme.homehealthy.Social.resource.ReviewResource;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -70,10 +71,14 @@ public class DietController {
     }
 
     @GetMapping("/diets/{dietId}")
-    public DietResource getDietname(@Valid @PathVariable (value = "dietId") Long dietId){
+    public DietResource getDietById(@Valid @PathVariable (value = "dietId") Long dietId){
         return convertToResource(dietService.getDietById(dietId));
     }
 
+    @GetMapping("/diets/{dietName}")
+    public DietResource getDietByName(@Valid @PathVariable (value = "dietName") String dietName){
+        return convertToResource(dietService.getDietByName(dietName));
+    }
 
     //Version antigua
     /*@PostMapping("/diets/sessions/{id}")
@@ -86,8 +91,9 @@ public class DietController {
     public DietResource createDiet(@Valid @RequestBody SaveDietResource resource,
                                    @Valid @PathVariable (value = "customerId") Long customerId,
                                    @Valid @PathVariable (value = "collaboratorId") Long collaboratorId){
+        Diet diet = convertToEntity(resource);
         return convertToResource(dietService.createDiet(customerId,collaboratorId,
-                convertToEntity(resource)));
+                diet));
         }
 
         //no funciona
