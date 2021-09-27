@@ -74,7 +74,7 @@ public class DietServiceImplIntegrationTest {
         diet.setName("Brocolin");
         when(dietRepository.findDietByName(diet.getName()))
                 .thenReturn(Optional.of(diet));
-        String expectedMessage = "This name is begin used in other diet";
+        String expectedMessage = "Resource Collaborator not found for Id with value 1";
         //Act
         Diet diet1 = new Diet();
         diet1.setId(2L);

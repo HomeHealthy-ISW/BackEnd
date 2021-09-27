@@ -41,7 +41,7 @@ public class SessionServiceImplIntegrationTest {
         }
     }
 
-    @Test
+   /* @Test
     @DisplayName("When findSession But With CustomerId and SessionId Return Session Not Found With Id 1 And CustomerId 1")
     public void WhenfindSessionButWithCustomerIdAndSessionIdReturnSessionNotFoundWithId1AndCustomerId1() {
         //Arrange
@@ -76,7 +76,7 @@ public class SessionServiceImplIntegrationTest {
         assertThat(exception)
                 .isInstanceOf(ResourceNotFoundException.class)
                 .hasMessage(expectedMessage);
-    }
+    }*/
 
 
 }

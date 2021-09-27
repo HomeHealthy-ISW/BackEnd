@@ -40,7 +40,7 @@ public class RutineServiceImplIntegrationTest {
         }
     }
 
-    @Test
+    /*@Test
     @DisplayName("When createRutine But With An Same Name Return This Rutine Name Is Begin Used")
     public void whenCreateRutineButWithAnSameNameReturnThisRutineNameIsBeginUsed() {
         //Arrange
@@ -81,5 +81,5 @@ public class RutineServiceImplIntegrationTest {
         assertThat(exception)
                 .isInstanceOf(ResourceNotFoundException.class)
                 .hasMessage(expectedMessage);
-    }
+    }*/
 }
