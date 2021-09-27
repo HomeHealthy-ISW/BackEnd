@@ -147,7 +147,6 @@
     <orderEntry type="library" name="Maven: nekohtml:xercesMinimal:1.9.6.2" level="project" />
     <orderEntry type="library" name="Maven: nekohtml:nekohtml:1.9.6.2" level="project" />
     <orderEntry type="library" name="Maven: commons-httpclient:commons-httpclient:3.1" level="project" />
-    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.14" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.maven.wagon:wagon-webdav-jackrabbit:1.0-beta-6" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.jackrabbit:jackrabbit-webdav:1.5.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.jackrabbit:jackrabbit-jcr-commons:1.5.0" level="project" />
@@ -177,7 +176,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.2" level="project" />
     <orderEntry type="library" name="Maven: jakarta.validation:jakarta.validation-api:2.0.2" level="project" />
     <orderEntry type="library" name="Maven: io.github.classgraph:classgraph:4.8.69" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.10" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:swagger-ui:3.34.0" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:webjars-locator-core:0.45" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.11.2" level="project" />
@@ -214,5 +212,15 @@
     <orderEntry type="library" scope="TEST" name="Maven: com.github.docker-java:docker-java-transport:3.2.8" level="project" />
     <orderEntry type="library" name="Maven: org.postgresql:postgresql:42.2.20" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.checkerframework:checker-qual:3.5.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: io.github.bonigarcia:webdrivermanager:4.0.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: commons-io:commons-io:2.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.google.code.gson:gson:2.8.6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.apache.httpcomponents.client5:httpclient5:5.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.apache.httpcomponents.core5:httpcore5:5.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.apache.httpcomponents.core5:httpcore5-h2:5.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.14" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.rauschig:jarchivelib:1.0.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jsoup:jsoup:1.13.1" level="project" />
   </component>
 </module>
