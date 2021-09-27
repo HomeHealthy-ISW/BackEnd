@@ -2,11 +2,10 @@ package com.acme.selenium;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-
-import static java.lang.Thread.sleep;
 import static org.assertj.core.api.Assertions.assertThat;
+import static java.lang.Thread.sleep;
 
-public class fddffg extends WebDriverConfig{
+public class diet extends WebDriverConfig{
     @Test
     void WhenUserSignInAndWantsToSeeDietsThenReturnsDietsNamePlan() throws InterruptedException {
         String expectedMessage = "Masa muscular";
