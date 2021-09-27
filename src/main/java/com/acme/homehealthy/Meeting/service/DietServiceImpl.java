@@ -3,13 +3,14 @@ package com.acme.homehealthy.Meeting.service;
 import com.acme.homehealthy.Initialization.domain.model.Collaborator;
 import com.acme.homehealthy.Initialization.domain.model.Customer;
 import com.acme.homehealthy.Meeting.domain.model.Diet;
-import com.acme.homehealthy.Meeting.domain.model.Session;
+
 import com.acme.homehealthy.Meeting.domain.repository.DietRepository;
-import com.acme.homehealthy.Meeting.domain.repository.SessionRepository;
+
 import com.acme.homehealthy.Initialization.domain.repository.CustomerRepository;
 import com.acme.homehealthy.Initialization.domain.repository.CollaboratorRepository;
 import com.acme.homehealthy.Meeting.domain.service.DietService;
-import com.acme.homehealthy.Social.domain.model.Review;
+
+import com.acme.homehealthy.MemberShip.domain.model.Plan;
 import com.acme.homehealthy.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,8 +24,6 @@ public class DietServiceImpl implements  DietService {
     @Autowired
     private DietRepository dietRepository;
 
-    @Autowired
-    private SessionRepository sessionRepository;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -38,6 +37,12 @@ public class DietServiceImpl implements  DietService {
     }
 
     @Override
+    public Diet getDietByName(String name) {
+        return dietRepository.findDietByName(name)
+                .orElseThrow(() -> new ResourceNotFoundException("Diet", "Name", name));
+    }
+
+    @Override
     public Diet createDiet(Long customerId, Long collaboratorId, Diet diet) {
         Collaborator existingCollaborator =
                 collaboratorRepository.findById(collaboratorId)
@@ -47,6 +52,11 @@ public class DietServiceImpl implements  DietService {
                         orElseThrow(() -> new ResourceNotFoundException("Customer","Id",customerId));
         diet.setCustomer(existingCustomer);
         diet.setCollaborator(existingCollaborator);
+        Diet existingName = dietRepository.findDietByName(diet.getName())
+                .orElse(null);
+        if(existingName != null){
+            throw new ResourceNotFoundException("This name is begin used in other diet");
+        }
         return dietRepository.save(diet);
         /*
         Diet existingDiet = dietRepository.findDietByname(diet.getName()).orElse(null);
@@ -73,7 +83,7 @@ public class DietServiceImpl implements  DietService {
 
     @Override
     public ResponseEntity<?> deleteDiet(String name) {
-        Diet diet = dietRepository.findDietByname(name).orElseThrow(()->new ResourceNotFoundException("Diet","name",name));
+        Diet diet = dietRepository.findDietByName(name).orElseThrow(()->new ResourceNotFoundException("Diet","name",name));
         dietRepository.delete(diet);
         return ResponseEntity.ok().build();
     }

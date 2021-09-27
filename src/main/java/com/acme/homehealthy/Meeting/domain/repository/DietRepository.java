@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface DietRepository extends JpaRepository<Diet,Long> {
     Page<Diet> findDietByCustomerId(Long customerId, Pageable pageable);
     Page<Diet> findDietByCollaboratorId(Long collaboratorId, Pageable pageable);
-    Optional<Diet>findDietByname(String name);
+    Optional<Diet>findDietByName(String name);
     //Optional<Diet>findDietBySession_Id(Long id);
 }
 

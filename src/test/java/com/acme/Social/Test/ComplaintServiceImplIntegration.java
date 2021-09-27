@@ -27,6 +27,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 public class ComplaintServiceImplIntegration {
@@ -58,9 +59,9 @@ public class ComplaintServiceImplIntegration {
         Reason reason = new Reason();
         reason.setId(1L);
         String template = ("Resource %s not found for %s with value %s");
-        Mockito.when(reasonRepository.findById(1L))
+        when(reasonRepository.findById(1L))
                 .thenReturn(Optional.of(reason));
-        Mockito.when(customerRepository.findById(1L))
+        when(customerRepository.findById(1L))
                 .thenReturn(Optional.empty());
         String expectedMessage = String.format(template, "Customer","Id",1L);
         //Act
@@ -82,9 +83,9 @@ public class ComplaintServiceImplIntegration {
         String template = ("Resource %s not found for %s with value %s");
         Customer customer = new Customer();
         customer.setId(1L);
-        Mockito.when(reasonRepository.findById(1L))
+        when(reasonRepository.findById(1L))
                 .thenReturn(Optional.empty());
-        Mockito.when(customerRepository.findById(1L))
+        when(customerRepository.findById(1L))
                 .thenReturn(Optional.of(customer));
         String expectedMessage = String.format(template, "Reason","Id",1L);
         //Act
@@ -104,7 +105,7 @@ public class ComplaintServiceImplIntegration {
     public void aaasd() {
         //Arrange
         String template = ("Resource %s not found for %s with value %s");
-        Mockito.when(complaintRepository.findById(1L))
+        when(complaintRepository.findById(1L))
                 .thenReturn(Optional.empty());
         String expectedMessage = String.format(template, "Complaint","Id",1L);
         //Act
@@ -115,5 +116,23 @@ public class ComplaintServiceImplIntegration {
         assertThat(exception)
                 .isInstanceOf(ResourceNotFoundException.class)
                 .hasMessage(expectedMessage);
+    }
+
+    @Test
+    @DisplayName("Get Complaint by Id with valid Id returns true ")
+    public void whenGetComplaintByIdIdWithValidIdThenReturnsComplaint(){
+        Long id = 1L;
+        String description = "This is a basic Complaint description";
+        Complaint complaint = new Complaint()
+                .setId(id)
+                .setDescription(description);
+        when(complaintRepository.findById(id))
+                .thenReturn(Optional.of(complaint));
+        //Act
+        Complaint foundComplaint = complaintService.getComplaintById(id);
+
+        //Assert
+        assertThat(foundComplaint.getId()).isEqualTo(complaint.getId());
+        assertThat(foundComplaint.getDescription()).isEqualTo(complaint.getDescription());
     }
 }

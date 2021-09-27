@@ -4,6 +4,7 @@ package com.acme.homehealthy.Meeting.domain.service;
 
 import com.acme.homehealthy.Meeting.domain.model.Diet;
 import com.acme.homehealthy.Meeting.domain.model.Session;
+import com.acme.homehealthy.MemberShip.domain.model.Plan;
 import com.acme.homehealthy.Social.domain.model.Review;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +18,7 @@ public interface DietService {
     Page<Diet> getAllDiets(Pageable pageable);
 
     Diet getDietById(Long id);
-
+    Diet getDietByName(String name);
     Diet createDiet( Long customerId, Long collaboratorId, Diet diet);
 
     Diet updateDiet(Long dietId, Diet diet, Long sessionId);

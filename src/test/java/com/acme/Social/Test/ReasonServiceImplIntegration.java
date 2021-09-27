@@ -21,6 +21,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 public class ReasonServiceImplIntegration {
@@ -48,7 +49,7 @@ public class ReasonServiceImplIntegration {
         Reason reason = new Reason();
         reason.setId(1L);
         reason.setDescription("¿Problemas con la aplicacion web?");
-        Mockito.when(reasonRepository.findReasonByDescription(reason.getDescription()))
+        when(reasonRepository.findReasonByDescription(reason.getDescription()))
                 .thenReturn(Optional.of(reason));
         //Act
         Reason reason2 = new Reason();
@@ -69,7 +70,7 @@ public class ReasonServiceImplIntegration {
     public void aasd() {
         //Arrange
         String template = ("Resource %s not found for %s with value %s");
-        Mockito.when(reasonRepository.findById(1L))
+        when(reasonRepository.findById(1L))
                 .thenReturn(Optional.empty());
         String expectedMessage = String.format(template, "Reason","Id",1L);
         //Act
@@ -80,5 +81,24 @@ public class ReasonServiceImplIntegration {
         assertThat(exception)
                 .isInstanceOf(ResourceNotFoundException.class)
                 .hasMessage(expectedMessage);
+    }
+
+
+    @Test
+    @DisplayName("When findById With valid Id Returns True")
+    public void whenGetReasonByIdIdWithValidIdThenReturnsReviews(){
+        //Arrange
+        Long id = 1L;
+        Reason reason = new Reason()
+                .setId(id)
+                .setDescription("This is a basic description");
+        when(reasonRepository.findById(id))
+                .thenReturn(Optional.of(reason));
+
+        //Act
+        Reason foundReason = reasonService.getReasonById(id);
+
+        //Asset
+        assertThat(foundReason.getId()).isEqualTo(reason.getId());
     }
 }

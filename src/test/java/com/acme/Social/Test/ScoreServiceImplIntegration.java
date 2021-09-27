@@ -20,6 +20,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 public class ScoreServiceImplIntegration {
@@ -46,7 +47,7 @@ public class ScoreServiceImplIntegration {
         Score score = new Score();
         score.setId(1L);
         score.setName("Muy bueno");
-        Mockito.when(scoreRepository.findScoreByName(score.getName()))
+        when(scoreRepository.findScoreByName(score.getName()))
                 .thenReturn(Optional.of(score));
         //Act
         Score score2 = new Score();
@@ -71,7 +72,7 @@ public class ScoreServiceImplIntegration {
         score.setId(1L);
         score.setName("Muy bueno");
         score.setValue(1L);
-        Mockito.when(scoreRepository.findScoreByValue(score.getValue()))
+        when(scoreRepository.findScoreByValue(score.getValue()))
                 .thenReturn(Optional.of(score));
         //Act
         Score score2 = new Score();
@@ -85,5 +86,42 @@ public class ScoreServiceImplIntegration {
         assertThat(exception)
                 .isInstanceOf(ResourceNotFoundException.class)
                 .hasMessage(message);
+    }
+
+    @Test
+    @DisplayName("Get Score by Id with valid Id then return true")
+    public void whenGetScoreByIdWithValidScoreIdThenReturnsScore(){
+        Long id = 1L;
+        Score newScore = new Score();
+        newScore.setId(id)
+                .setName("Malo")
+                .setValue(3L);
+        when(scoreRepository.findById(id))
+                .thenReturn(Optional.of(newScore));
+
+        //Act
+        Optional<Score> foundScore = scoreRepository.findById(id);
+
+        //Assert
+        assertThat(foundScore.get().getId()).isEqualTo(id);
+    }
+
+    @Test
+    @DisplayName("Get Score by Id with valid Id then return is not valid")
+    public void whenGetScoreByIdWithInValidScoreIdThenReturnsResourceNotFoundException(){
+        String template ="Resource %s not found for %s with value %s";
+        Long id = 1L;
+        when(scoreRepository.findById(id))
+                .thenReturn(Optional.empty());
+        String expectedMessage = String.format(template, "Score", "Id", id);
+        //Act
+        Throwable exception = catchThrowable(()->{
+            Score foundScore = scoreService.getScoreById(id);
+        });
+
+        //Assert
+        assertThat(exception)
+                .isInstanceOf(ResourceNotFoundException.class)
+                .hasMessage(expectedMessage);
     }
 }
