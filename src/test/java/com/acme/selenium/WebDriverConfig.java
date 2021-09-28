@@ -13,7 +13,8 @@ import static java.lang.Thread.sleep;
 
 public class WebDriverConfig {
     WebDriver driver;
-    String API_URL = "http:localhost:4200";
+    //String API_URL = "http:localhost:4200";
+    String API_URL = "https://homehealthy.netlify.app";
     String PATH_DRIVER = System.getProperty("user.dir") + "\\driver\\windows\\chromedriver.exe";
 
     @BeforeAll
