@@ -39,4 +39,19 @@ public class collaborators  extends WebDriverConfig{
         assertThat(expectedNutritionistName).isEqualTo(foundCollaboratorName);
 
     }
+
+    @Test
+    void WhenUserSingInAndWantsToSearchForATraineristCollaboratorThenReturnsTraineristName() throws InterruptedException {
+        //Act
+        String expectedTrainerName = "John";
+        //Act
+        driver.findElement(By.xpath("/html/body/app-root/app-home/app-user-header/mat-toolbar/mat-toolbar-row/div/a[4]")).click();
+        sleep(1000);
+        driver.findElement(By.xpath("//*[@id=\"mat-input-2\"]")).sendKeys("trainer");
+        sleep(1000);
+        String foundCollaboratorName = driver.findElement(By.xpath("/html/body/app-root/app-collaborators/div/mat-card/mat-card-content/table/tbody/tr/td[2]")).getText();
+        //Assert
+        assertThat(expectedTrainerName).isEqualTo(foundCollaboratorName);
+
+    }
 }
