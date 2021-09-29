@@ -12,7 +12,7 @@ public class diet extends WebDriverConfig {
         //Arrange
         String expectedMessage = "Masa muscular";
         //Act
-        sleep(1000);
+        sleep(2000);
         driver.findElement(By.xpath("/html/body/app-root/app-home/app-user-header/mat-toolbar/mat-toolbar-row/div/a[1]")).click();
         sleep(2000);
         driver.findElement(By.xpath("/html/body/app-root/app-diets/div/div/mat-card/mat-card-actions/a")).click();
