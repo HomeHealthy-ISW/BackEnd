@@ -1,5 +1,6 @@
-package com.acme.cucumber;
+package com.acme.cucumber.stepDefinitions;
 
+import com.acme.cucumber.WebConfig;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
