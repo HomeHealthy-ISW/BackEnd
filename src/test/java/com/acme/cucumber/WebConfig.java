@@ -31,10 +31,11 @@ public class WebConfig {
 
     public void logInAsCollaborator() throws InterruptedException {
         driver.findElement(By.xpath("/html/body/app-root/app-division-page/div/div[2]/div/button[2]")).click();
-        driver.findElement(By.xpath("//*[@id=\"mat-input-3\"]")).sendKeys("jd123@gmail.com");
-        driver.findElement(By.xpath("//*[@id=\"mat-input-4\"]")).sendKeys("123456789");
+        sleep(2000);
+        driver.findElement(By.xpath("//*[@id=\"mat-input-0\"]")).sendKeys("jd123@gmail.com");
+        driver.findElement(By.xpath("//*[@id=\"mat-input-1\"]")).sendKeys("123456789");
         driver.findElement(By.xpath("/html/body/app-root/app-collaborator-login/div/mat-card/form/mat-card-actions/div/button")).click();
-        sleep(1000);
+        sleep(2000);
     }
 
     public void close(){

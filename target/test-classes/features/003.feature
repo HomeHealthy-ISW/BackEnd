@@ -1,3 +1,5 @@
+Feature: visualizar mi rutina de la semana
+
 Scenario: El usuario HomeHealthy desea visualizar su rutina semanal
   Given El usuario HomeHealthy se encuentra en la página de Routines
   When El usuario haga click en Ver Detalle de las rutinas que tiene preparadas
