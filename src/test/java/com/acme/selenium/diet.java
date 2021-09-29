@@ -18,7 +18,7 @@ public class diet extends WebDriverConfig {
         driver.findElement(By.xpath("/html/body/app-root/app-diets/div/div/mat-card/mat-card-actions/a")).click();
         sleep(2000);
         String foundMessageResult = driver.findElement(By.cssSelector("body > app-root > app-diet-details > div > h1")).getText();
-        //Assert
+        //Assertt
         assertThat(expectedMessage).isEqualTo(foundMessageResult);
     }
 }
