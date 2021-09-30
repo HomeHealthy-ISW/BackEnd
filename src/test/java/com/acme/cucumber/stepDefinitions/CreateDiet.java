@@ -1,3 +1,5 @@
+package com.acme.cucumber.stepDefinitions;
+
 import com.acme.cucumber.WebConfig;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -24,12 +26,14 @@ public class CreateDiet {
 
     @When("El nutricionista hará click en el ícono de añadir")
     public void elNutricionistaHaráClickEnElÍconoDeAñadir() throws InterruptedException {
-        myDriver.driver.findElement(By.xpath("/html/body/app-root/app-collaborator-diets/div/div[1]/button/span[1]/mat-icon")).click();
+        myDriver.driver.findElement(By.xpath("/html/body/app-root/app-collaborator-diets/div/div[1]/button")).click();
         sleep(1000);
     }
 
     @Then("El sistema mostrará el formulario para poder crear una dieta personalizada")
-    public void elSistemaMostraráElFormularioParaPoderCrearUnaDietaPersonalizada() {
+    public void elSistemaMostraráElFormularioParaPoderCrearUnaDietaPersonalizada() throws InterruptedException {
+        sleep(2000);
+        myDriver.close();
     }
 
     @Given("El nutricionista se encuentra en la página de Diets")
@@ -40,10 +44,9 @@ public class CreateDiet {
 
     @And("Completa todos los campos necesarios para la dieta")
     public void completaTodosLosCamposNecesariosParaLaDieta() {
-        myDriver.driver.findElement(By.xpath("//*[@id=\"mat-input-5\"]")).sendKeys("Maintenance");
+        myDriver.driver.findElement(By.xpath("//*[@id=\"mat-input-2\"]")).sendKeys("Maintenance");
         myDriver.driver.findElement(By.xpath("//*[@id=\"mat-input-6\"]")).sendKeys("1");
-        myDriver.driver.findElement(By.xpath("//*[@id=\"mat-input-7\"]")).sendKeys("comida 1");
-        myDriver.driver.findElement(By.xpath("//*[@id=\"mat-input-8\"]")).sendKeys("comida 2");
+
     }
 
     @Then("El sistema añadirá la dieta al usuario que el Nutricionista asigne")
