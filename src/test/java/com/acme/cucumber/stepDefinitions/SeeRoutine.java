@@ -23,7 +23,8 @@ public class SeeRoutine {
     }
 
     @When("El usuario haga click en Ver Detalle de las rutinas que tiene preparadas")
-    public void elUsuarioHagaClickEnVerDetalleDeLasRutinasQueTienePreparadas() {
+    public void elUsuarioHagaClickEnVerDetalleDeLasRutinasQueTienePreparadas() throws InterruptedException {
+        sleep(1000);
         myDriver.driver.findElement(By.xpath("/html/body/app-root/app-routines/div/div/mat-card/mat-card-actions/a")).click();
     }
 

@@ -20,8 +20,8 @@ public class CreateRoutine {
     @Given("El entrenador se dirigirá a la página de Routines")
     public void elEntrenadorSeDirigiráALaPáginaDeRoutines() throws InterruptedException {
         myDriver.logInAsCollaborator();
-        sleep(1000);
         myDriver.driver.findElement(By.xpath("/html/body/app-root/app-collaborator-home/app-collaborator-header/mat-toolbar/mat-toolbar-row/div/a[2]")).click();
+        sleep(1000);
     }
 
     @When("El entrenador hará click en el ícono de añadir")
@@ -32,7 +32,7 @@ public class CreateRoutine {
 
     @Then("El sistema mostrará el formulario para poder crear una rutina de ejercicios personalizada")
     public void elSistemaMostraráElFormularioParaPoderCrearUnaRutinaDeEjerciciosPersonalizada() throws InterruptedException {
-        sleep(3000);
+        sleep(2000);
         myDriver.close();
     }
 

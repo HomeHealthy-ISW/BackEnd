@@ -26,8 +26,8 @@ public class CreateDiet {
 
     @When("El nutricionista hará click en el ícono de añadir")
     public void elNutricionistaHaráClickEnElÍconoDeAñadir() throws InterruptedException {
-        myDriver.driver.findElement(By.xpath("/html/body/app-root/app-collaborator-diets/div/div[1]/button")).click();
-        sleep(1000);
+        sleep(2000);
+        myDriver.driver.findElement(By.xpath("/html/body/app-root/app-collaborator-diets/div/div[1]/button/span[1]/mat-icon")).click();
     }
 
     @Then("El sistema mostrará el formulario para poder crear una dieta personalizada")
@@ -38,31 +38,37 @@ public class CreateDiet {
 
     @Given("El nutricionista se encuentra en la página de Diets")
     public void elNutricionistaSeEncuentraEnLaPáginaDeDiets() throws InterruptedException {
-        elNutricionistaSeDirigiráALaPáginaDeDiets();
-        elNutricionistaHaráClickEnElÍconoDeAñadir();
+        myDriver.logInAsCollaborator();
+        sleep(1000);
+        myDriver.driver.findElement(By.xpath("/html/body/app-root/app-collaborator-home/app-collaborator-header/mat-toolbar/mat-toolbar-row/div/a[1]")).click();
+
     }
 
     @And("Completa todos los campos necesarios para la dieta")
-    public void completaTodosLosCamposNecesariosParaLaDieta() {
+    public void completaTodosLosCamposNecesariosParaLaDieta() throws InterruptedException {
+        sleep(2000);
         myDriver.driver.findElement(By.xpath("//*[@id=\"mat-input-2\"]")).sendKeys("Maintenance");
-        myDriver.driver.findElement(By.xpath("//*[@id=\"mat-input-6\"]")).sendKeys("1");
+        myDriver.driver.findElement(By.xpath("//*[@id=\"mat-input-3\"]")).sendKeys("1");
 
     }
 
     @Then("El sistema añadirá la dieta al usuario que el Nutricionista asigne")
-    public void elSistemaAñadiráLaDietaAlUsuarioQueElNutricionistaAsigne() {
+    public void elSistemaAñadiráLaDietaAlUsuarioQueElNutricionistaAsigne() throws InterruptedException {
         myDriver.driver.findElement(By.xpath("/html/body/app-root/app-collaborator-create-diet/div/form/div/button")).click();
+        sleep(2000);
     }
 
     @And("Completa todos los campos necesarios para la dieta y no selecciona un usuario")
-    public void completaTodosLosCamposNecesariosParaLaDietaYNoSeleccionaUnUsuario() {
+    public void completaTodosLosCamposNecesariosParaLaDietaYNoSeleccionaUnUsuario() throws InterruptedException {
+        sleep(2000);
         myDriver.driver.findElement(By.xpath("//*[@id=\"mat-input-5\"]")).sendKeys("Maintenance");
         myDriver.driver.findElement(By.xpath("//*[@id=\"mat-input-7\"]")).sendKeys("comida 1");
         myDriver.driver.findElement(By.xpath("//*[@id=\"mat-input-8\"]")).sendKeys("comida 2");
     }
 
     @Then("El sistema no le permitirá añadir la dieta a un usuario con campo vacío.")
-    public void elSistemaNoLePermitiráAñadirLaDietaAUnUsuarioConCampoVacío() {
-
+    public void elSistemaNoLePermitiráAñadirLaDietaAUnUsuarioConCampoVacío() throws InterruptedException {
+        sleep(2000);
+        myDriver.close();
     }
 }

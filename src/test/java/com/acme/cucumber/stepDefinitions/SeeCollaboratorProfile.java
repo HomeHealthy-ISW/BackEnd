@@ -17,6 +17,7 @@ public class SeeCollaboratorProfile {
 
     @When("El usuario haga click en Ver perfil")
     public void elUsuarioHagaClickEnVerPerfil() throws InterruptedException {
+        sleep(3000);
         myDriver.driver.findElement(By.xpath("/html/body/app-root/app-collaborators/div/mat-card/mat-card-content/table/tbody/tr[1]/td[5]/a")).click();
         sleep(2000);
     }
