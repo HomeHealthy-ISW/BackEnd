@@ -16,7 +16,7 @@ public class WebConfig {
 
     public WebConfig() {
         String API_URL = "https://homehealthy.netlify.app";
-        String PATH_DRIVER = System.getProperty("user.dir") + "\\driver\\windows\\chromedriver.exe";
+        String PATH_DRIVER = System.getProperty("user.dir") + "\\driver\\windows\\chromedriver_95.exe";
         System.setProperty("webdriver.chrome.driver", WebConfig.PATH_DRIVER);
         driver = new ChromeDriver();
         driver.get(API_URL);

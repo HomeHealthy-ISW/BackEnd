@@ -11,8 +11,9 @@ public class SeeCollaboratorProfile {
 
     WebConfig myDriver;
 
-    SeeCollaboratorProfile(){
+    public SeeCollaboratorProfile() {
         myDriver = new WebConfig();
+
     }
 
     @When("El usuario haga click en Ver perfil")
