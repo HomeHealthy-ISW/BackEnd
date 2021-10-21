@@ -12,9 +12,12 @@
     <artifactId>homehealthy</artifactId>
     <packaging>war</packaging>
     <version>1.0</version>
+
     <name>homehealthy</name>
     <description>HomeHealthy Application with SpringBoot</description>
-
+    <properties>
+        <tomcat.version>9.0.19</tomcat.version>
+    </properties>
 
         <dependencies>
             <dependency>
@@ -149,6 +152,21 @@
                 <artifactId>cucumber-core</artifactId>
                 <version>6.10.4</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.xml.bind</groupId>
+                <artifactId>jakarta.xml.bind-api</artifactId>
+                <version>2.3.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>3.25.0-GA</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
