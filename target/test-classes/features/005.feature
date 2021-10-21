@@ -17,6 +17,7 @@ Feature: crear una dieta personalizada
 
     Then El sistema añadirá la dieta al usuario que el Nutricionista asigne
 
+
   Scenario: El nutricionista agrega una dieta incorrectamente
 
     Given El nutricionista se encuentra en la página de Diets
