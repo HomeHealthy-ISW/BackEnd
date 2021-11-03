@@ -10,7 +10,7 @@
         </parent>
     <groupId>com.acme</groupId>
     <artifactId>homehealthy</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <version>1.0</version>
 
     <name>homehealthy</name>
