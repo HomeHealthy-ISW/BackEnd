@@ -12,7 +12,6 @@
     <artifactId>homehealthy</artifactId>
     <packaging>jar</packaging>
     <version>1.0</version>
-
     <name>homehealthy</name>
     <description>HomeHealthy Application with SpringBoot</description>
 
