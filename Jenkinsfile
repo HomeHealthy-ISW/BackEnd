@@ -19,6 +19,13 @@ pipeline {
  }
  }
  }
+ stage('sonarQube Analysis'){
+ steps{
+ withSonarQubeEnv('sonarQube'){
+ bat 'mvn clean package verify sonar:sonar -Dsonar.projectKey=HomeHealthy'
+ }
+ }
+ }
  stage ('package Stage') {
  steps {
  withMaven(maven : 'MAVEN_3_6_3') {
