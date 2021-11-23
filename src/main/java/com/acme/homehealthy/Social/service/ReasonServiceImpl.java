@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class ReasonServiceImpl implements ReasonService {
 
@@ -41,7 +43,7 @@ public class ReasonServiceImpl implements ReasonService {
     public Reason updateReason(Long id, Reason reasonRequest) {
         Reason existReason = reasonRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Reason","Id",id));
         Reason existName = reasonRepository.findReasonByDescription(reasonRequest.getDescription()).orElse(null);
-        if(existReason.getDescription() != reasonRequest.getDescription()) {
+        if(!Objects.equals(existReason.getDescription(), reasonRequest.getDescription())) {
             if (existName != null) {
                 throw new ResourceNotFoundException("This description exists");
             }
