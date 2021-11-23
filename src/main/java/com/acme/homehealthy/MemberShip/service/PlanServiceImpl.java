@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class PlanServiceImpl implements PlanService {
 
@@ -51,7 +53,7 @@ public class PlanServiceImpl implements PlanService {
     @Override
     public Plan updatePlan(Long id, Plan plan) {
         Plan existingPlan = planRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Plan","Id",id));
-        if(existingPlan.getName() != plan.getName()) {
+        if(!Objects.equals(existingPlan.getName(), plan.getName())) {
             Plan existingPlanName = planRepository.findPlanByName(plan.getName())
                     .orElse(null);
             if (existingPlanName != null) {

@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -53,7 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         Customer existingCustomer = customerRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Customer","Id",id));
 
-        if(customer.getEmail() != existingCustomer.getEmail()) {
+        if(!Objects.equals(customer.getEmail(), existingCustomer.getEmail())) {
             Customer existingEmail = customerRepository.findCustomerByEmail(customer.getEmail()).orElse(null);
             if (existingEmail != null) {
                 throw new ResourceNotFoundException("This email is begin used by another user");

@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class ScoreServiceImpl implements ScoreService {
 
@@ -44,14 +46,14 @@ public class ScoreServiceImpl implements ScoreService {
     public Score updateScore(Long id, Score scoreRequest) {
         Score existingScore = scoreRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Score","Id",id));
 
-        if(existingScore.getName() != scoreRequest.getName()) {
+        if(!Objects.equals(existingScore.getName(), scoreRequest.getName())) {
             Score existingName = scoreRepository.findScoreByName(scoreRequest.getName()).orElse(null);
             if (existingName != null) {
                 throw new ResourceNotFoundException("This name is begin used");
             }
         }
 
-        if(existingScore.getValue() != scoreRequest.getValue()) {
+        if(!Objects.equals(existingScore.getValue(), scoreRequest.getValue())) {
             Score existingValue = scoreRepository.findScoreByValue(scoreRequest.getValue()).orElse(null);
             if (existingValue != null) {
                 throw new ResourceNotFoundException("This value is begin used");

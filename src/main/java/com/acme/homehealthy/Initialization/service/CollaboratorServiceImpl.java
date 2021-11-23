@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class CollaboratorServiceImpl implements CollaboratorService {
 
@@ -39,6 +41,7 @@ public class CollaboratorServiceImpl implements CollaboratorService {
                 collaboratorRepository.findCollaboratorByEmail(collaborator.getEmail())
                         .orElse(null);
         if(existingEmail != null){
+            assert false;
             throw new ResourceNotFoundException
                     ("The email " + existingUsername.getEmail() + " is begin used by another user");
         }
@@ -48,7 +51,7 @@ public class CollaboratorServiceImpl implements CollaboratorService {
     @Override
     public Collaborator updateCollaborator(Long id, Collaborator collaborator) {
         Collaborator _collaborator = collaboratorRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Collaborator","Id",id));
-        if(_collaborator.getEmail() != collaborator.getEmail()) {
+        if(!Objects.equals(_collaborator.getEmail(), collaborator.getEmail())) {
             Collaborator existingEmail = collaboratorRepository.findCollaboratorByEmail(collaborator.getEmail()).orElse(null);
             if (existingEmail == null) {
                 throw new ResourceNotFoundException("This email is being used by another user");
