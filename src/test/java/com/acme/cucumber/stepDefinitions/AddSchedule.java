@@ -26,6 +26,7 @@ public class AddSchedule {
 
     @When("El nutricionista haga click en el date picker podrá seleccionar una fecha y hora")
     public void elNutricionistaHagaClickEnElDatePickerPodráSeleccionarUnaFechaYHora() throws InterruptedException {
+        sleep(3000);
         myDriver.driver.findElement(By.xpath("/html/body/app-root/app-collaborator-profile/div/div[3]/mat-form-field[2]/div/div[1]/div[2]/mat-datepicker-toggle/button/span[1]/svg/path")).click();
         sleep(1000);
         myDriver.driver.findElement(By.xpath("//*[@id=\"cdk-overlay-0\"]/ngx-mat-datetime-content/div[2]/button")).click();

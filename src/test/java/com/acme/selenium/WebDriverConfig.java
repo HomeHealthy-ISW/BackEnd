@@ -15,7 +15,7 @@ public class WebDriverConfig {
      public WebDriver driver;
     //String API_URL = "http:localhost:4200";
     String API_URL = "https://homehealthy.netlify.app";
-    String PATH_DRIVER = System.getProperty("user.dir") + "\\driver\\windows\\chromedriver.exe";
+    String PATH_DRIVER = System.getProperty("user.dir") + "\\driver\\windows\\chromedriver_95.exe";
 
     @BeforeAll
     static void setupClass() {

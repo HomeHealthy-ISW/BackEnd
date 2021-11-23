@@ -12,11 +12,11 @@ import static java.lang.Thread.sleep;
 public class WebConfig {
     public  WebDriver driver;
     public  String API_URL = "https://homehealthy.netlify.app";
-    public static String PATH_DRIVER = System.getProperty("user.dir") + "\\driver\\windows\\chromedriver.exe";
+    public static String PATH_DRIVER = System.getProperty("user.dir") + "\\driver\\windows\\chromedriver_96.exe";
 
     public WebConfig() {
         String API_URL = "https://homehealthy.netlify.app";
-        String PATH_DRIVER = System.getProperty("user.dir") + "\\driver\\windows\\chromedriver_95.exe";
+        String PATH_DRIVER = System.getProperty("user.dir") + "\\driver\\windows\\chromedriver_96.exe";
         System.setProperty("webdriver.chrome.driver", WebConfig.PATH_DRIVER);
         driver = new ChromeDriver();
         driver.get(API_URL);

@@ -2,7 +2,7 @@ Feature: visualizar el perfil del especialista
 
   Scenario: El usuario HomeHealthy desea visualizar el perfil del entrenador
 
-    Given El usuario HomeHealthy se encuentra en la página de Collaborators
+    Given El usuario HomeHealthy se encuentra en la página de Collaboratorsp
 
     When El usuario haga click en Ver perfil
 
